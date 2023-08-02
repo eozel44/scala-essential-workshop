@@ -5,40 +5,47 @@ object s5a_traits {
 // Product Type Pattern
 
 // If A has a b (with type B) and a c (with type C) write
-//    trait A {
-//         def b: B
-//         def c: C
-//    }
+
+     case class A(b: B, c: C)
+
+      trait A {
+           def b: B
+           def c: C
+      }
 
 // Sum Type Pattern
 
-// If A is a B or C write
-//    sealed trait A
-//    final case class B() extends A
-//    final case class C() extends A
+  // If A is a B or C write sample:(sealed trait / final case pattern)
+      sealed trait A
+      final case class B() extends A
+      final case class C() extends A
 
 //Algebraic Data Types
-//An algebraic data type is any data that uses the Product or Sum pattern.
+  //An algebraic data type is any data that uses the Product or Sum pattern.
 
 //The Missing Patterns
 
 // is-a and
 // A is a B and C
 
-//    trait B
-//    trait C
-//    trait A extends B with C
+    trait B
+    trait C
+    trait A extends B with C
 
 // has-a or
-// A has a B or C.
 // A has a d of type D, where D is a B or C.
+    trait A {
+      def d: D
+    }
+    sealed trait D
+    final case class B() extends D
+    final case class C() extends D
 
-//    trait A {
-//      def d: D
-//    }
-//    sealed trait D
-//    final case class B() extends D
-//    final case class C() extends D
+//another sample; A is a D or E, and D has a B and E has a C.
+
+    sealed trait A
+    final case class D(b: B) extends A
+    final case class E(c: C) extends A
 
   }
 }
