@@ -55,6 +55,19 @@ def facto(i: BigInt): BigInt = if (i <= 1) 1 else i * facto(i - 1)
 
       loop(1, i)
     }
+//extend trait
+val example = Pair(1, Pair(2, Pair(3, End)))
+    //    assert(example.length == 3)
+    //    assert(example.tail.length == 2)
+    //    assert(End.length == 0)
 
+    //solution add method to trait
+    //    def length: Int =
+    //      this match {
+    //        case End => 0
+    //        case Pair(hd, tl) => 1 + tl.length
+    //      }
+
+    List(1,2,3,4).length
   }
 }
