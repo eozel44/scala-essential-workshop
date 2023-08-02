@@ -18,8 +18,10 @@ object s5_traits {
 // A trait cannot have a constructor
 // Traits can define abstract methods
     trait Visitor {
-      def id: String // Unique id assigned to each user
-      def createdAt: Date // Date this user first visited the site
+      //never define vals in a trait, but rather to use def
+      def id: String
+      def createdAt: Date
+
       // How long has this visitor been around?
       def age: Long = new Date().getTime - createdAt.getTime
     }
@@ -40,10 +42,11 @@ object s5_traits {
 
 //Sealed Trait Pattern
 // Sealed traits and final (case) classes allow us to control extensibility of types
+// When we mark a trait as sealed we must define all of its subtypes in the same file.
 
-//    sealed trait Visitor { /* ... */ }
-//    final case class User(/* ... */) extends Visitor
-//    final case class anonymous(/* ... */) extends Visitor
+    //    sealed trait Visitor { /* ... */ }
+    //    final case class User(/* ... */) extends Visitor
+    //    final case class anonymous(/* ... */) extends Visitor
 
 
   }
