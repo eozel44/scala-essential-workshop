@@ -1,4 +1,4 @@
-object s5a_traits {
+object s6_algebraic_data_types {
 
   def main(args: Array[String]): Unit = {
 
