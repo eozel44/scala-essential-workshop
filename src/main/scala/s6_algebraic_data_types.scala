@@ -52,6 +52,7 @@ object s6_algebraic_data_types {
 1-Structural Recursion using Polymorphism
 ***/
 
+//literal sample
     sealed trait A {
       def foo: String
     }
@@ -68,19 +69,13 @@ object s6_algebraic_data_types {
     // anA: A = B()
     anA.foo
     // res0: String = It's B!
-
     val anA2: A = C()
     // anA: A = C()
     anA2.foo
     // res1: String = It's C!
 
 
-
-
-    /***
-    2-Structural Recursion using Pattern Matching
-    */
-
+//
     sealed trait Food
     case object Antelope extends Food
     case object TigerFood extends Food
@@ -110,6 +105,17 @@ object s6_algebraic_data_types {
 //        CatFood(favouriteFood)
 //    }
 
+
+    /***
+    2-Structural Recursion using Pattern Matching
+     */
+
+    sealed trait Feline
+    case class Lion() extends Feline
+    case class Tiger() extends Feline
+    case class Panther() extends Feline
+    case class Cat(favouriteFood: String) extends Feline
+
 //pattern matching in the base trait;
 
 //    sealed trait Feline {
@@ -121,12 +127,6 @@ object s6_algebraic_data_types {
 //          case Cat(favouriteFood) => CatFood(favouriteFood)
 //        }
 //    }
-
-    sealed trait Feline
-    case class Lion() extends Feline
-    case class Tiger() extends Feline
-    case class Panther() extends Feline
-    case class Cat(favouriteFood: String) extends Feline
 
 //pattern matching in an external object
     object Diner {
@@ -140,8 +140,8 @@ object s6_algebraic_data_types {
     }
 
 // The general rule is: if a method only depends on other fields and methods
-// in a class it is a good candidate to be implemented inside the class. If the
-// method depends on other data  consider implementing it using pattern matching outside of the classes in question.
+// in a class it is a good candidate to be implemented inside the class.
+// If the method depends on other data consider implementing it using pattern matching outside of the classes in question.
 // If we want to have more than one implementation we should use pattern matching and implement it outside the classes.
 
     /***
