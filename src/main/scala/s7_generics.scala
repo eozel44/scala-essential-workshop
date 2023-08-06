@@ -5,7 +5,7 @@ object s7_generics {
      * Generics
      *
      * Generic types allow us to abstract over types
-     *
+     * The syntax [A] is called a type parameter.
      */
 
     final case class Box[A](value: A)
@@ -14,7 +14,6 @@ object s7_generics {
     Box("hi") // if we omit the type parameter, scala will infer its value
     // res2: Box[String] = Box(hi)
 
-    //The syntax [A] is called a type parameter.
     def boxMethod[A](value: A): A = value
     boxMethod[String]("foo")
     boxMethod(1)
