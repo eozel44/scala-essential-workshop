@@ -1,4 +1,4 @@
-object s8_function_abstraction {
+object s9_generic_functions {
 
   def main(args: Array[String]): Unit = {
 
