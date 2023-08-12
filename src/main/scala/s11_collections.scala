@@ -2,57 +2,44 @@ object s11_collections {
 
   def main(args: Array[String]): Unit = {
 
-
     /*** A sequence is a collection of items with a defined and stable order
-     *
-     *
+     * The default implementation of Seq is a List, which is a classic linked-list
+     * Some Scala libraries work specifically with Lists rather than using more generic types like Seq
      */
-    /*** accessing elements ***/
+
+/** accessing elements **/
     val sequence = Seq(1, 2, 3)
-    sequence.apply(0)
-    // res0: Int = 1
-    sequence(0) // sugared syntax
-    // res1: Int = 1
-    sequence(3)
-    // java.lang.IndexOutOfBoundsException: 3
+    assert(sequence.apply(0)==1)
+    assert(sequence(0) == 1)// sugared syntax
+    //sequence(3)  //java.lang.IndexOutOfBoundsException: 3
+    assert(sequence.head==1)
+    assert(sequence.tail == Seq(2,3))
+    assert(sequence.tail.head==2)
+    assert(sequence.headOption ==Some(1))
+    assert(sequence.length==3)
 
-    sequence.head
-    // res5: Int = 1
-    sequence.tail
-    // res6: Seq[Int] = List(2, 3)
-    sequence.tail.head
-    // res7: Int = 2
-    sequence.headOption
-    // res17: Option[Int] = Some(1)
 
-    sequence.length
-    // res19: Int = 3
-/*** searching ***/
-    sequence.contains(2)
-    // res20: Boolean = true
+    assert(sequence.contains(2)==true)
+    assert(sequence.find(_ == 3)==Some(3))
+    assert(sequence.find(_ > 4) == None)
+    assert(sequence.filter(_ > 1) == List(2,3))
+    assert(sequence.sortWith(_ > _)==List(3,2,1))
+    assert(sequence :+ 4 == List(1, 2, 3, 4))
+    assert(0 +: sequence  == List(0, 1, 2, 3))
+    assert(sequence ++ Seq(4, 5, 6) == List(1, 2, 3, 4, 5, 6))
+/**working with sequence*/
+    assert(sequence.map(elt => elt * 2) == List(2,4,6))
+    assert(sequence.map(_ * 2) == List(2,4,6))
+    assert(Seq(1, 2, 3).flatMap(num => Seq(num, num * 10)) == List(1, 10, 2, 20, 3, 30))
+/***/
+    val list = 1 :: 2 :: 3 :: Nil
+    assert(list == List(1, 2, 3))
+    assert(4 :: 5 :: list ==List(4, 5, 1, 2, 3))
+    assert(List(1, 2, 3) ::: List(4, 5, 6) == List(1, 2, 3, 4, 5, 6))
 
-    sequence.find(_ == 3)
-    // res21: Option[Int] = Some(3)
-    sequence.find(_ > 4)
-    // res22: Option[Int] = None
 
-    sequence.filter(_ > 1)
-    // res23: Seq[Int] = List(2, 3)
-/*** sort ***/
-    sequence.sortWith(_ > _)
-    // res24: Seq[Int] = List(3, 2, 1)
-/*** appending/prepending ***/
-    sequence.:+(4)
-    // res25: Seq[Int] = List(1, 2, 3, 4)
 
-    sequence :+ 4
-    // res26: Seq[Int] = List(1, 2, 3, 4)
 
-    0 +: sequence
-    // res28: Seq[Int] = List(0, 1, 2, 3)
-/*** concatenate sequences ***/
-    sequence ++ Seq(4, 5, 6)
-    // res29: Seq[Int] = List(1, 2, 3, 4, 5, 6)
 
 
 
