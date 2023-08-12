@@ -37,6 +37,31 @@ object s11_collections {
     assert(4 :: 5 :: list ==List(4, 5, 1, 2, 3))
     assert(List(1, 2, 3) ::: List(4, 5, 6) == List(1, 2, 3, 4, 5, 6))
 
+/**
+ * For Comprehensions
+ * Not Your Father’s For Loops
+ *
+   a.flatMap(x => b.flatMap(y => c.map(z => e)))
+ *
+ * equals
+ *
+   for {
+          x <- a  //flatmap
+          y <- b  //flatmap
+          z <- c  //flatmap
+      } yield e   //map
+ *
+ * */
+
+    val data = Seq(Seq(1), Seq(2, 3), Seq(4, 5, 6))
+    assert(data.flatMap(_.map(_ * 2)) == List(2, 4, 6, 8, 10, 12))
+
+    val res0 = for {
+          subseq <- data
+          element <- subseq
+      } yield element * 2
+
+    assert(res0 == List(2, 4, 6, 8, 10, 12))
 
 
 
