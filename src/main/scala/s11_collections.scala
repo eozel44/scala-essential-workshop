@@ -31,7 +31,9 @@ object s11_collections {
     assert(sequence.map(elt => elt * 2) == List(2,4,6))
     assert(sequence.map(_ * 2) == List(2,4,6))
     assert(Seq(1, 2, 3).flatMap(num => Seq(num, num * 10)) == List(1, 10, 2, 20, 3, 30))
-/***/
+/**
+ * The default implementation of Seq is a List
+ * */
     val list = 1 :: 2 :: 3 :: Nil
     assert(list == List(1, 2, 3))
     assert(4 :: 5 :: list ==List(4, 5, 1, 2, 3))
