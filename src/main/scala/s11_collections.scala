@@ -66,6 +66,42 @@ object s11_collections {
 
     assert(res0 == List(2, 4, 6, 8, 10, 12))
 
+    /** filtering **/
+    val res1 = for(x <- Seq(-2, -1, 0, 1, 2) if x > 0) yield x
+    assert(res1 == List(1, 2))
+
+    /** parallel iteration **/
+    val res2 = for {
+      x <- Seq(1, 2, 3)
+      y <- Seq(4, 5, 6)
+    } yield x + y
+    assert(res2 == List(5, 6, 7, 6, 7, 8, 7, 8, 9))
+
+    /** sequenced iteration **/
+    val res3 = for{
+      x <- Seq(1, 2, 3).zip(Seq(4, 5, 6))
+    }yield { val (a, b) = x; a + b}
+    assert(res3 == List(5, 7, 9))
+
+    val res4 = for{
+      x <- Seq(1, 2, 3).zipWithIndex
+    } yield x
+
+    assert(res4 == List((1,0), (2,1), (3,2)))
+
+    /** pattern matching **/
+    val res5 = for{
+      (a, b) <- Seq(1, 2, 3).zip(Seq(4, 5, 6))
+    } yield a + b
+
+
+    val res6 = for {
+      x <- Seq(1, 2, 3)
+      square = x * x
+      y <- Seq(4, 5, 6)
+    } yield square * y
+
+    assert(res6 == List(4, 5, 6, 16, 20, 24, 36, 45, 54))
     /**
      * Options
      *
