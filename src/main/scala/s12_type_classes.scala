@@ -29,5 +29,46 @@ object s12_type_classes {
     Note: multiple implicit values are not allowed in same scope.
     */
     assert(List(3,4,2).sorted == List(2,3,4))
+
+
+    /**
+     * Implicit Priority
+     *
+     *The compiler looks for type class instances (implicit values) in two places:
+        1. the local scope
+        2. the companion objects of types involved in the method call.
+      Implicits found in the local scope take precedence over those found in companion objects.
+     * */
+
+    final case class Rational(numerator: Int, denominator: Int)
+    object Rational {
+      implicit val ordering = Ordering.fromLessThan[Rational]((x, y) =>
+        (x.numerator.toDouble / x.denominator.toDouble) <
+          (y.numerator.toDouble / y.denominator.toDouble)
+      )
+    }
+
+    object Example{
+      def example() = {
+        assert(List(Rational(1, 2), Rational(3, 4), Rational(1, 3)).sorted
+          ==
+          List(Rational(1, 3), Rational(1, 2), Rational(3, 4)))
+      }
+    }
+
+    object ExamplePriorty {
+      implicit val higherPriorityImplicit = Ordering.fromLessThan[Rational]((x, y) =>
+        (x.numerator.toDouble / x.denominator.toDouble) >
+          (y.numerator.toDouble / y.denominator.toDouble)
+      )
+      def example() =
+        assert(List(Rational(1, 2), Rational(3, 4), Rational(1, 3)).sorted
+          ==
+          List(Rational(3, 4), Rational(1, 2), Rational(1, 3)))
+    }
+
+    Example.example()
+    ExamplePriorty.example()
+
   }
 }
