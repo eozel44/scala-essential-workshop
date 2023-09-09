@@ -142,6 +142,48 @@ object s11_collections {
     assert(sumOption2(readInt("a"), readInt("2")) == None)
 
 
+    /**
+     * Maps
+     * A Map is very much like its counterpart in Java - it is a collection that maps keys to values.
+     * */
+
+    val example = Map("a" -> 1, "b" -> 2, "c" -> 3)
+    /** apply attempts to look up a key and throws an exception if it is not found **/
+    assert(example("a") == 1)
+    assert(example.get("a")== Some(1))
+    assert(example.getOrElse("d", -1) == -1)
+    assert(example.contains("a") == true)
+
+    /** Sorted maps **/
+    val example2 = scala.collection.immutable.ListMap("a" -> 1) + ("b" -> 2) + ("c" -> 3) + ("d" -> 4) + ("e" -> 5)
+
+    val res8 = example2.flatMap {
+      case (str, num) =>
+        (1 to 3).map(x => (str + x) -> (num * x))
+    }
+
+    /**
+     * Sets
+     *
+     * Sets are unordered collections that contain no duplicate elements.
+     */
+
+    val people = Set(
+      "Alice",
+      "Bob",
+      "Charlie",
+      "Derek",
+      "Edith",
+      "Fred")
+
+
+    /**
+     * Ranges
+     *
+     */
+    val res10 = 1 until 10
+    //Range(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
 
   }
 }
