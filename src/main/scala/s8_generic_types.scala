@@ -1,4 +1,4 @@
-object s_8_generic_types {
+object s8_generic_types {
 
   def main(args: Array[String]): Unit = {
     /***

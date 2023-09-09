@@ -1,4 +1,4 @@
-object s_9_generic_functions {
+object s9_generic_functions {
 
   def main(args: Array[String]): Unit = {
 

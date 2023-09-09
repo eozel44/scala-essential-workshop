@@ -1,4 +1,4 @@
-object s_4_pattern_matching {
+object s4_pattern_matching {
 
   def main(args: Array[String]): Unit = {
 

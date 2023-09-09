@@ -1,4 +1,4 @@
-object s_1_basics {
+object s1_basics {
 
   def main(args: Array[String]): Unit = {
 

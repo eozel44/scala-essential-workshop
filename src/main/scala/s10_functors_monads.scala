@@ -1,4 +1,4 @@
-object s_10_functors_monads {
+object s10_functors_monads {
 /**
  * A type like F[A] with a map method is called a functor.
  * If a functor also has a flatMap method it is called a monad.

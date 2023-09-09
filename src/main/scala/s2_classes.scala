@@ -1,4 +1,4 @@
-object s_2_classes {
+object s2_classes {
 
   def main(args: Array[String]): Unit = {
 

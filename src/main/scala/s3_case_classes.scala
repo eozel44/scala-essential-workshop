@@ -1,4 +1,4 @@
-object s_3_case_classes {
+object s3_case_classes {
 
   def main(args: Array[String]): Unit = {
 
