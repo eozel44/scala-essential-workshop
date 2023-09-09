@@ -70,5 +70,76 @@ object s12_type_classes {
     Example.example()
     ExamplePriorty.example()
 
+    /**
+     * Implicit parameters
+     *
+     * If we call a method and do not explicitly supply its implicit parameter list,
+       the compiler will search for implicit values of the correct types to complete the parameter list for us.
+     * */
+
+    final case class Person(name: String, email: String)
+    trait HtmlWriter[A] {
+      def write(in: A): String
+    }
+
+    object PersonWriter extends HtmlWriter[Person] {
+      def write(person: Person) = s"<span>${person.name} &lt;${person.email}&gt;</span>"
+    }
+
+    PersonWriter.write(Person("John", "john@example.com"))
+
+    implicit object ObfuscatedPersonWriter extends HtmlWriter[Person] {
+      def write(person: Person) = s"${person.name} (${person.email.replaceAll("@", " at ")})"
+    }
+
+    ObfuscatedPersonWriter.write(Person("John", "john@example.com"))
+
+
+    object HtmlUtil {
+      def htmlify[A](data: A)(implicit writer: HtmlWriter[A]): String = {
+        writer.write(data)}
+    }
+
+    HtmlUtil.htmlify(Person("John", "john@example.com"))(PersonWriter)
+    HtmlUtil.htmlify(Person("John", "john@example.com"))
+
+    /** Another sample */
+
+    trait Equal[A] {
+      def equal(v1: A, v2: A): Boolean
+    }
+    object Eq {
+      def apply[A](v1: A, v2: A)(implicit equal: Equal[A]): Boolean =
+        equal.equal(v1, v2)
+    }
+    object NameAndEmailImplicit {
+      implicit object NameEmailEqual extends Equal[Person] {
+        def equal(v1: Person, v2: Person): Boolean =
+          v1.email == v2.email && v1.name == v2.name
+      }
+    }
+    object EmailImplicit {
+      implicit object EmailEqual extends Equal[Person] {
+        def equal(v1: Person, v2: Person): Boolean =
+          v1.email == v2.email
+      }
+    }
+
+    object Examples {
+      def byNameAndEmail = {
+        import NameAndEmailImplicit._
+        Eq(Person("Noel", "noel@example.com"), Person("Noel", "noel@example.com"))
+      }
+
+      def byEmail = {
+        import EmailImplicit._
+        Eq(Person("Noel", "noel@example.com"), Person("Dave", "noel@example.com"))
+      }
+    }
+
+
+
+
+
   }
 }
