@@ -1,4 +1,4 @@
-object s7_recursion {
+object s_7_recursion {
 
   def main(args: Array[String]): Unit = {
 
