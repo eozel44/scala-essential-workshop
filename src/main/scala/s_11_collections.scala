@@ -1,4 +1,4 @@
-object s11_collections {
+object s_11_collections {
 
   def main(args: Array[String]): Unit = {
 

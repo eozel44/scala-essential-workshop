@@ -1,4 +1,4 @@
-object s5_traits {
+object s_5_traits {
 
   def main(args: Array[String]): Unit = {
 
