@@ -1,4 +1,4 @@
-object s12_type_classes {
+object s12_implicits {
 
   def main(args: Array[String]): Unit = {
 
