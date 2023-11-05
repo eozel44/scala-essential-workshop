@@ -1,10 +1,11 @@
 object s4_pattern_matching {
 
   def main(args: Array[String]): Unit = {
-
-// Pattern Matching
-// Pattern matching is like an extended if expression that
-// allows us to evaluate an expression depending on the “shape” of the data.
+/***
+    Pattern Matching
+    Pattern matching is like an extended if expression that allows us to
+    evaluate an expression depending on the “shape” of the data.
+*/
 
     case class Person(firstName: String, lastName: String) {
       def name = firstName + " " + lastName
