@@ -50,13 +50,19 @@ object s6_algebraic_data_types {
 
 /***we have two patterns for building algebraic data types.***/
 
-/***1-Structural Recursion using Polymorphism**/
-
     sealed trait Food
     case object Antelope extends Food
     case object TigerFood extends Food
     case object Licorice extends Food
     final case class CatFood(food: String) extends Food
+
+    sealed trait Feline
+    case class Lion() extends Feline
+    case class Tiger() extends Feline
+    case class Panther() extends Feline
+    case class Cat(favouriteFood: String) extends Feline
+
+/***1-Structural Recursion using Polymorphism**/
 
 //polymorphism
 
@@ -81,16 +87,9 @@ object s6_algebraic_data_types {
 //        CatFood(favouriteFood)
 //    }
 
-
     /***
     2-Structural Recursion using Pattern Matching
      */
-
-    sealed trait Feline
-    case class Lion() extends Feline
-    case class Tiger() extends Feline
-    case class Panther() extends Feline
-    case class Cat(favouriteFood: String) extends Feline
 
 //pattern matching in the base trait;
 
@@ -115,18 +114,13 @@ object s6_algebraic_data_types {
         }
     }
 
-// The general rule is: if a method only depends on other fields and methods
-// in a class it is a good candidate to be implemented inside the class.
-// If the method depends on other data consider implementing it using pattern matching outside of the classes in question.
-// If we want to have more than one implementation we should use pattern matching and implement it outside the classes.
-
-    /***
-          Add new method          Add new data
-    OO    Change existing code     Existing code unchanged
-    FP    Existing code unchanged  Change existing code
-
-     ***/
-  }
+/***
+ The general rule is: if a method only depends on other fields and methods
+ in a class it is a good candidate to be implemented inside the class.
+ If the method depends on other data consider implementing it using pattern matching outside of the classes in question.
+ If we want to have more than one implementation we should use pattern matching and implement it outside the classes.
+    */
+}
 
 
 
