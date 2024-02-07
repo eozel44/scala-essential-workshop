@@ -48,34 +48,10 @@ object s6_algebraic_data_types {
 //    final case class D(b: B) extends A
 //    final case class E(c: C) extends A
 
-/***we have two patterns for building algebraic data types.
-1-Structural Recursion using Polymorphism
-***/
+/***we have two patterns for building algebraic data types.***/
 
-//literal sample
-    sealed trait A {
-      def foo: String
-    }
-    final case class B() extends A {
-      def foo: String =
-        "It's B!"
-    }
-    final case class C() extends A {
-      def foo: String =
-        "It's C!"
-    }
+/***1-Structural Recursion using Polymorphism**/
 
-    val anA: A = B()
-    // anA: A = B()
-    anA.foo
-    // res0: String = It's B!
-    val anA2: A = C()
-    // anA: A = C()
-    anA2.foo
-    // res1: String = It's C!
-
-
-//
     sealed trait Food
     case object Antelope extends Food
     case object TigerFood extends Food
